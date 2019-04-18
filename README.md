@@ -1,7 +1,86 @@
-# Depend on Docker for AI (face recognition)
+# Depend on Docker for AI - Face Recognition
 
 This project is an example of a [Depend on Docker](https://github.com/bhgedigital/depend-on-docker) project used to build, ship and run an AI application for face recognition.
 
-Credit for the application code goes to [Adam Geitgey](https://github.com/ageitgey). This project is based on the the following GitHub repository: [https://github.com/ageitgey/face_recognition](https://github.com/ageitgey/face_recognition)
+Credit for the application code goes to [Adam Geitgey](https://github.com/ageitgey). This project is based on the the following GitHub repository: [https://github.com/ageitgey/face_recognition](https://github.com/ageitgey/face_recognition). The face recognition model from this repo is containerized as a Depend on Docker project and published to [this repository](https://github.com/iankoulski/depend-on-docker-ai). An automated build picks up changes from [here](https://github.com/iankoulski/depend-on-docker-ai) and pushes the container images to [DockerHub](https://hub.docker.com/r/iankoulski/face-recognition).
 
+## Configure
+
+As with any [Depend on Docker](https://github.com/bhgedigital/depend-on-docker) project, all configuration settings are centralized in the .env file. Modifications of settings in this file take effect for all new commands. If a container is already running, in order for new settings to take effect, that container needs to be stopped and restarted. 
+
+## Build
+
+You can build this project by running the ./build.sh script. By default this script builds a CPU and a GPU image containing the face_recognition CLI. To build only one of these images pass the respective argument as shown below.
+
+    ./build.sh cpu
+
+or 
+
+    ./build.sh gpu
+
+## Ship
+
+You can ship or obtain the container image from a registry after reviewing the REGISTRY and IMAGE settings in the .env file by using the push.sh and pull.sh scripts.
+
+## Run
+
+This container uses a face_recognition CLI to match pictures of unknown people's faces to known pictures of people's faces.
+
+### Clone the repository (Optional)
+
+Cloning the repository is optional, it provides convenience scripts and a sample folder structure. If you wish to run the container directly, please refer to the "[Using docker](#UsingDocker)" subsection below.
+
+    git clone https://github.com/iankoulski/depend-on-docker-ai.git
+
+
+### Load data or use the sample images
+
+The data folder in this project contains two subfolders: images and known_people. Please store pictures of unknown faces in the images folder and provide one example picture of each person's face that you would like the model to be able to recognize in the known_people folder. Name each file in the known_people folder with the name of the person who is in the picture. Each picture in this folder should contain only one face.
+
+Directory structure:
+
+    project_folder
+          ┃
+          ┗━━ data
+                ┃
+                ┣━━ images
+                ┃      ┃
+                ┃      ┗━━ TestImage.jpg
+                ┃
+                ┗━━ known_people
+                       ┃
+                       ┠━━ Alex.jpg
+                       ┃
+                       ┗━━ Fabio.jpg
+
+
+You may copy your own files in this folder structure, or use the provided sample images.
+
+The following options are available for running face_recognition:
+
+### Use recognize.sh
+
+
+    ./recognize.sh [FileName]
+
+
+Performs face recognition on the specified FileName located in the data/images folder. If no FileName is specified, then all images in the folder are processed.
+
+### Use run.sh 
+
+    ./run.sh face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg [--show-distance True] [--tolerance 0.6]
+
+Performs face recognition and gives you control of which folders to use for known and unknown people. To change the volume mount, modify file .env
+
+### <a name="UsingDocker"></a>Use docker
+
+    docker container run -v $(pwd):/wd --rm -it iankoulski/face-recognition face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg --show-distance True
+
+Runs the face-recognition container without relying on any of the template scripts.
+
+## Test
+
+    ./test.sh
+
+Runs an internal test against data that is stored within the container to ensure that the face_recognition functionality works as expected.
 

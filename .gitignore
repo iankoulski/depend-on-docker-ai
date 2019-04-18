@@ -1,2 +1,8 @@
-data/
-.DS_store
+data/images/*
+!data/images/README.md
+!data/images/TestImage.jpg
+data/known_people/*
+!data/known_people/README.md
+!data/known_people/Alex.jpg
+!data/known_people/Fabio.jpg
+.DS_Store

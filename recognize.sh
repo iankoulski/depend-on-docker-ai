@@ -8,6 +8,6 @@ if [ "${1}" == "--help" ]; then
   exit 0
 fi
 
-./run.sh face_recognition /wd/data/known_people /wd/data/images/$1 --show-distance True --tolerance 0.586
+./run.sh face_recognition /wd/data/known_people /wd/data/images/$1 --show-distance True --tolerance 0.586 | grep -v None
 
 
