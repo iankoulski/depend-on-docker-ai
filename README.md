@@ -1,6 +1,6 @@
 # Depend on Docker for AI - Face Recognition
 
-This project is an example of a [Depend on Docker](https://github.com/bhgedigital/depend-on-docker) project used to build, ship and run an AI application for face recognition.
+This repository is an example of a [Depend on Docker](https://github.com/bhgedigital/depend-on-docker) project used to build, ship and run an AI application for face recognition.
 
 Credit for the application code goes to [Adam Geitgey](https://github.com/ageitgey). This project is based on the the following GitHub repository: [https://github.com/ageitgey/face_recognition](https://github.com/ageitgey/face_recognition). The face recognition model from this repo is containerized as a Depend on Docker project and published to [this repository](https://github.com/iankoulski/depend-on-docker-ai). An automated build picks up changes from [here](https://github.com/iankoulski/depend-on-docker-ai) and pushes the container images to [DockerHub](https://hub.docker.com/r/iankoulski/face-recognition).
 
@@ -77,6 +77,10 @@ The following options are available for running face_recognition:
 
 Performs face recognition on the specified FileName located in the data/images folder. If no FileName is specified, then all images in the folder are processed.
 
+Embedded example:
+
+<p align="center"><img alt="Face Recognition Example" src="https://github.com/iankoulski/depend-on-docker-ai/raw/master/docs/FaceRecognitionAnimationSD.gif" width="90%" align="center"/></p>
+
 ### Use run.sh 
 
     ./run.sh face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg [--show-distance True] [--tolerance 0.6]
@@ -104,4 +108,12 @@ Runs the face-recognition container without relying on any of the template scrip
     ./test.sh
 
 Runs an internal test against data that is stored within the container to ensure that the face_recognition functionality works as expected.
+
+# References
+
+- [Depend on Docker](https://github.com/bhgedigital/depend-on-docker)
+- [Depend on Docker for AI - Dockercon 2019](https://dockercon19.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=290742)
+- [Face Recognition Container Image on DockerHub](https://hub.docker.com/r/iankoulski/face-recognition)
+- [Romario Project](https://github.com/bhgedigital/romario)
+- [Face Recognition Project](https://github.com/ageitgey/face_recognition)
 
