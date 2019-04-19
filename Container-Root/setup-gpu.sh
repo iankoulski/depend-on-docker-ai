@@ -37,6 +37,12 @@ cmake --build /dlib/build
 cd /dlib; python3 /dlib/setup.py install
 
 # Install the face recognition package
+#pip3 install face_recognition
 
-pip3 install face_recognition
+cd ~ && \
+    mkdir -p face_recognition && \
+    git clone https://github.com/ageitgey/face_recognition.git face_recognition/ && \
+    cd face_recognition && \
+    pip3 install -r requirements.txt && \
+    python3 setup.py install
 

@@ -24,7 +24,7 @@ You can ship or obtain the container image from a registry after reviewing the R
 
 ## Run
 
-This container uses a face_recognition CLI to match pictures of unknown people's faces to known pictures of people's faces.
+This container uses a face_recognition CLI to match pictures of unknown people's faces to known pictures of people's faces. 
 
 ### Clone the repository (Optional)
 
@@ -32,6 +32,17 @@ Cloning the repository is optional, it provides convenience scripts and a sample
 
     git clone https://github.com/iankoulski/depend-on-docker-ai.git
 
+### Set processor type
+
+This project can run either on CPU or GPU using the corresponding container image. By default the run.sh script uses the CPU continer. To control where to run the workload, please define environment variable PROCESSOR_TYPE before executing run.sh.
+
+    export PROCESSOR_TYPE=CPU   -   Runs face recognition on CPU (default)
+
+or
+
+    export PROCESSOR_TYPE=GPU   -   Runs face recognition on GPU
+
+To run on GPU using this project's scripts, it is assumed that a GPU is available on the machine and NVIDIA CUDA drivers version 10.0 or greater are installed.
 
 ### Load data or use the sample images
 
@@ -74,7 +85,17 @@ Performs face recognition and gives you control of which folders to use for know
 
 ### <a name="UsingDocker"></a>Use docker
 
+Running on CPU
+
     docker container run -v $(pwd):/wd --rm -it iankoulski/face-recognition face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg --show-distance True
+
+Running on GPU with CUDA10.x
+
+    docker container run --runtime=nvidia -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 -v $(pwd):/wd --rm -it iankoulski/face-recognition face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg --show-distance True
+
+Running on GPU with CUDA9.x
+
+    nvidia-docker run -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 -v $(pwd):/wd --rm -it iankoulski/face-recognition face_recognition /wd/data/known_people /wd/data/images/TestImage.jpg --show-distance True
 
 Runs the face-recognition container without relying on any of the template scripts.
 
