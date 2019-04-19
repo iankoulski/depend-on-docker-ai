@@ -81,7 +81,7 @@ Embedded example:
 
 <p align="center"><img alt="Face Recognition Example" src="https://github.com/iankoulski/depend-on-docker-ai/raw/master/docs/FaceRecognitionAnimationSD.gif" width="90%" align="center"/></p>
 
-This example uses the embedded images Alex.jpg and Fabio.jpg to learn facial features and then recognizes faces in TestImage.jpg. Note that the known images have significan differences with the test image which could make a face recognition task challenging. Most of Alex's sample is taken by a prominent background, while Fabio is facing forward in the sample and sideways in the test image. Regardless, the face recognition application is able to identify the people correctly with good distance metrics: 0.48 for Alex and 0.38 for Fabio. Distance metrics are numbers between 0 and 1. A face is recognized with higher certainty when the distance metric is closer to 0.
+This example uses the embedded images Alex.jpg and Fabio.jpg to learn facial features and then recognizes faces in TestImage.jpg. Note that the known images have significant differences with the test image which could make a face recognition task challenging. Most of Alex's sample is taken by a prominent background, while Fabio is facing forward in the sample and sideways in the test image. Regardless, the face recognition application is able to identify the people correctly with good distance metrics: 0.48 for Alex and 0.38 for Fabio. Distance metrics are numbers between 0 and 1. A face is recognized with higher certainty when the distance metric is closer to 0.
 
 ### Use run.sh 
 
