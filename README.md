@@ -42,7 +42,7 @@ or
 
     export PROCESSOR_TYPE=GPU   -   Runs face recognition on GPU
 
-To run on GPU using this project's scripts, it is assumed that a GPU is available on the machine and NVIDIA CUDA drivers version 10.0 or greater are installed.
+To run on GPU using the scripts in this project, it is assumed that a GPU is available on the machine and NVIDIA CUDA driver version 10.0 or greater is installed.
 
 ### Load data or use the sample images
 
@@ -83,7 +83,7 @@ Performs face recognition on the specified FileName located in the data/images f
 
 Performs face recognition and gives you control of which folders to use for known and unknown people. To change the volume mount, modify file .env
 
-### <a name="UsingDocker"></a>Use docker
+### <a name="UsingDocker"></a>Use Docker
 
 Running on CPU
 
